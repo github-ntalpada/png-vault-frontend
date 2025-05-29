@@ -7,6 +7,7 @@ import {
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import Badge from 'react-bootstrap/Badge'
 import LoginButton from '../../general/auth-login/auth-login'
 import LogoutButton from '../../general/auth-login/auth-logout'
 import { useAuth0 } from "@auth0/auth0-react";
@@ -17,6 +18,7 @@ import { Col, Image, Row } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import { TextField } from "@mui/material";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import SideFilter from "../../sideFilter";
 
 export default function Header() {
   const context = useContext(ImageCatagoryContext);
@@ -40,7 +42,7 @@ export default function Header() {
   
   useEffect(() => {
     const storage = getStorage();
-    const listRef1 = ref(storage, 'siteLogo/pngvalt-full-logo.png');
+    const listRef1 = ref(storage, 'siteLogo/PV-icon.png');
     const listRef2 = ref(storage, 'siteLogo/header-bg.png');
     const image1 = getDownloadURL(listRef1)
     const image2 = getDownloadURL(listRef2)
@@ -57,8 +59,8 @@ export default function Header() {
     //   });
     // }).catch((error) => {
     // });
-    const headerHeight = window.location.pathname == '/' ? '440px' : '100px';
-    setheaderHeight(headerHeight)
+    // const headerHeight = window.location.pathname == '/' ? '440px' : '100px';
+    // setheaderHeight(headerHeight)
   })
 
   const count = () => {
@@ -72,61 +74,51 @@ export default function Header() {
   }
   
   var divStyle = {
-    backgroundImage: 'url(' + HeaderBG + ')',
-    height: headerHeight
+    // backgroundImage: 'url(' + HeaderBG + ')',
+    // height: '70px'
   };
 
   return (
       <div className="header-main" style={divStyle}>
-        <Container fluid>
+        <Container>
           <Row>
-            <Col sm="2" md="2" xl="2" className="d-flex justify-content-center align-items-center">
-              <Link to="/"><Image src={siteLogo} width={180}/></Link>
+            <Col sm="2" md="2" xl="2" className="d-flex justify-content-center align-items-center m-0">
+              <Link to="/"><Image src={siteLogo} width={40}/></Link>
             </Col>
             
-            {isAuthenticated && user.name !== "admin" ? 
-              <Col sm="8" md="8" xl="8" className="d-flex justify-content-end align-items-center">
-                <Navbar>
-                    <Nav className="gap-3">
-                      {/* <Link to="/">Home</Link> */}
-                      {/* <Link to="/contact">Contact</Link> */}
-                      {/* <Link to="/profile" >Profile</Link> */}
-                      {/* <Link to="/order" >My Order</Link> */}
-                    </Nav>
-                </Navbar>
-              </Col>
-              : 
-                user?.sub === 'auth0|660e8e4e87f5f10dda5c0a8e'?
-                <Col sm="8" md="8" xl="8" className="d-flex justify-content-end align-items-center">
-                  <Navbar>
-                    <Nav className="gap-3">
-                        <Link to="/">Home</Link>
-                        <Link to="/uploadimages">Add Image</Link>
-                        <Link to="/uploadimages">Add Catagory</Link>
-                    </Nav>
-                  </Navbar>
-                </Col>
-                :
-                <Col sm="8" md="8" xl="8" className="d-flex justify-content-end align-items-center">
-                  <Navbar>
-                    <Nav className="gap-3">
-                        <Link to="/">Home</Link>
-                        <Link to="/contact">Contact</Link>
-                    </Nav>
-                  </Navbar>
-                </Col>
-              }
+            {/* <Col sm="8" md="8" xl="8" className="d-flex justify-content-end align-items-center">
+              <Navbar>
+                <Nav className="gap-3">
+                    <Link to="/">Home</Link>
+                    <Link to="/uploadimages">Add Image</Link>
+                    <Link to="/uploadimages">Add Catagory</Link>
+                </Nav>
+              </Navbar>
+            </Col> */}
             
-            <Col sm="2" md="2" xl="2" className="d-flex justify-content-center align-items-center">
+            <Col sm="7" md="7" xl="7" className="d-flex justify-content-end align-items-center">
+              {/* <Navbar>
+                <Nav className="gap-3">
+                    <Link to="/">Home</Link>
+                    <Link to="/contact">Contact</Link>
+                </Nav>
+              </Navbar> */}
+            </Col>
+            
+            <Col sm="3" md="3" xl="3" className="d-flex justify-content-center align-items-center p-0 gap-2">
               
               {isAuthenticated ? 
-              <>
+              <div className="d-flex flex-row justify-content-center gap-2">
+                <div className="d-flex flex-column justify-content-center align-items-end">
+                  <span><strong>Welcome,</strong> {user.name}</span>
+                  <Badge bg="success">Free User</Badge>
+                </div>
                 <div className="user-account">
-                  <Navbar className="d-flex justify-content-end mt-2 mb-2 border-left-1">
+                  {/* <Navbar className="d-flex justify-content-end mt-2 mb-2 border-left-1">
                     <Nav className="d-inline-flex  gap-2">
                         <Link className="add-cart" to="/cart"><FaCartArrowDown size={23} />{count() ? <div className="cart-count">{count()}</div> : ''}</Link>
                     </Nav>
-                  </Navbar>
+                  </Navbar> */}
                   <Dropdown className="profile-dropdown">
                     <Dropdown.Toggle id="dropdown-basic">
                       <img src={user.picture} alt={user.name} width={40} height={40}/>
@@ -136,25 +128,27 @@ export default function Header() {
                       <Navbar>
                         <Nav className="profile-dropdown-list">
                           <Dropdown.Item className="profile-dropdown-item"><Link to="/profile">Profile</Link></Dropdown.Item>
-                          <Dropdown.Item className="profile-dropdown-item"><Link to="/order">My Order</Link></Dropdown.Item>
+                          {/* <Dropdown.Item className="profile-dropdown-item"><Link to="/order">My Order</Link></Dropdown.Item> */}
                           <Dropdown.Item className="profile-dropdown-item"><LogoutButton></LogoutButton></Dropdown.Item>
                         </Nav>
                       </Navbar>
                     </Dropdown.Menu>
                   </Dropdown>
                 </div>
-              </>
+              </div>
               :
-              <Navbar className="d-flex justify-content-end mt-2 mb-2">
-                <Nav className="d-inline-flex  gap-2">
-                    <Link className="add-cart" onClick={() => loginWithRedirect()}><FaCartArrowDown size={23} /></Link>
+              <Navbar className="d-flex justify-content-end m-0">
+                <Nav className="d-inline-flex gap-2">
+                    
+                    {/* <Link className="add-cart" onClick={() => loginWithRedirect()}><FaCartArrowDown size={23} /></Link> */}
                     <LoginButton></LoginButton>
                 </Nav>
               </Navbar>
               }
             </Col>
           </Row>
-          {
+          
+          {/* {
             window.location.pathname == '/' ?
             <Row className="main-header-title">
             <Col className="col" sm="12" md="12" xl="12">
@@ -164,7 +158,7 @@ export default function Header() {
             </Col>
           </Row> : 
           ''
-          }
+          } */}
           
         </Container>
       </div>

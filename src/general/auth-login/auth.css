@@ -1,9 +1,9 @@
-.navbar-nav button {
+.navbar-nav .login-button{
     background-color: transparent;
     -webkit-border-radius: 10px;
     border-radius: 10px;
     border: none;
-    color: #fff;
+    color: #000;
     cursor: pointer;
     display: inline-block;
     font-family: sans-serif;
@@ -18,11 +18,11 @@
   }
 
   .navbar-nav .login-button{
-    background-color: #038379;
+    background-color: transparent;
   }
   .navbar-nav .login-button:hover{
-    opacity: 0.7;
-    background-color: #038379;
+    /* opacity: 0.7; */
+    box-shadow: 0px 0px 20px rgba(0,0,0,.2);
   }
 
   .logout-button{

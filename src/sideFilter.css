@@ -1,0 +1,113 @@
+.sidebar {
+  width: 260px;
+  background-color: #038379;
+  backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  height: auto;
+  position: sticky;
+  top: 0;
+  margin-top: 20px;
+  border-radius: 10px;
+
+  /* transition props */
+  transition: width 0.3s ease, padding 0.3s ease, opacity 0.3s ease;
+  overflow: hidden; /* hide contents when shrinking */
+  opacity: 1;
+}
+
+/* When closed, shrink sidebar width to 0 and remove padding & fade out */
+.sidebar.closed {
+  width: 0;
+  padding: 0;
+  opacity: 0;
+  border-right: none;
+}
+
+
+.header {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #f0f0f0;
+}
+
+.section {
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+  width: 100%;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 600;
+  background: none;
+  border: none;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+  color: #ddd;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chip:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.active {
+  background: #00bcd4;
+  color: #fff;
+}
+
+.options {
+  list-style: none;
+  padding-left: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+input[type='checkbox'] {
+  margin-right: 0.5rem;
+}
+
+.sliderExpandButton {
+  height: fit-content;
+  border: none;
+  background-color: #038379;
+  border-radius: 0px 5px 5px 0px;
+  padding: 20px 10px;
+  margin-top: 50px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* keep button visible even if sidebar closes */
+  position: sticky;
+  top: 50px;
+  cursor: pointer;
+}
+
+.sliderExpandButton svg {
+  transition: transform 0.3s ease-in-out;
+}
+
+.sliderExpandButton.open svg {
+  transform: rotate(180deg);
+}

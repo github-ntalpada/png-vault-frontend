@@ -7,6 +7,7 @@ import Routers from './routers';
 import Header from './common/header/header';
 import Footers from './common/footer/footer';
 import ImageCatagoryContext from './context/imageCatagory';
+import SideFilter from './sideFilter';
 
 
 export default function App() {
@@ -15,7 +16,10 @@ export default function App() {
     <ImageCatagoryContext.Provider value={{searchText,setSearchText}}>
       <Router>
         <Header></Header>
-        <Routers></Routers>
+        <div className="d-flex flex-colums w-100">
+          <SideFilter></SideFilter>
+          <Routers></Routers>
+        </div>
         {/* <Footers></Footers> */}
       </Router>
       

@@ -11,10 +11,11 @@ import { Provider } from 'react-redux'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Auth0Provider
-        domain="dev-nk11.us.auth0.com"
-        clientId="47hnaPYGbo9roJ3fOcJAQofnxfwyCl2x"
+        domain="nirav11.us.auth0.com"
+        clientId="4Vpvin3kYryJavHcMyeXSj0jcM7OL23N"
         authorizationParams={{
-          redirect_uri: window.location.origin
+          redirect_uri: window.location.origin,
+          audience: 'https://nirav11.us.auth0.com/api/v2/'
         }}
         cacheLocation="localstorage"
         useRefreshTokens={true}

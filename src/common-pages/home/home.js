@@ -208,17 +208,17 @@ export default function Home() {
     <div className="main">
       <Toaster />
       <Container>
-        <div className="catagory-sidebar">
-          <Tabs>
+        {/* <div className="catagory-sidebar"> */}
+          {/* <Tabs>
             <TabList>
-            {/* <Tab onClick={() => filterdata('All')}>All</Tab> */}
+           
               {catagoryNewArray.map(catagory => (
                 <Tab><a onClick={() => setselectedCatagory(catagory.catagory)}>{catagory.catagory}</a></Tab>
               ))}
             </TabList>
-          </Tabs>
+          </Tabs> */}
           
-        </div>
+        {/* </div> */}
         <div className="image-list">
           {
             itemData.length == 0 ?
@@ -235,40 +235,40 @@ export default function Home() {
 
               </div>
               :
-              user?.sub == 'auth0|660e8e4e87f5f10dda5c0a8e' ?
+             
                 
-                itemData.map(item => (
-                  <>
-                  <div>
-                    <div className="images admin-images">
-                      {item.price == '' ? '' : <FaRupeeSign className="pricing-tag" />}
-                      <img className="image" src={item.img}></img>
-                      {!item.hasOwnProperty('discount') ? '' : 
-                        item.discount == "" ? '':
-                        <div className="discount-tag">
-                          <img className="discount-image" src={Discountlogo} />
-                          <span className="discount-lable">{item.discount}% OFF</span>
-                       </div>
-                      }
-                      <div className="image-details">
-                        <Button variant="primary" onClick={() => setFormData({
-                        catagory : item.catagory,
-                        description : item.description,
-                        id : item.id,
-                        img : item.img,
-                        price : item.price,
-                        title : item.title,
-                        discount : item.discount,
-                        discountPrice : item.discountPrice
-                      }, handleOpen())}>Preview Image</Button>
-                        <Button variant="secondary" onClick={() => (editImage(item),handleClose())}>Edit Image</Button>
-                        <Button variant="danger" onClick={() => setRemovedImageId(item.id,RemoveModelOpen())}>REMOVE</Button>
-                      </div>
-                    </div>
-                    </div>
-                  </>
-                ))
-                :
+                // itemData.map(item => (
+                //   <>
+                //   <div>
+                //     <div className="images admin-images">
+                //       {item.price == '' ? '' : <FaRupeeSign className="pricing-tag" />}
+                //       <img className="image" src={item.img}></img>
+                //       {!item.hasOwnProperty('discount') ? '' : 
+                //         item.discount == "" ? '':
+                //         <div className="discount-tag">
+                //           <img className="discount-image" src={Discountlogo} />
+                //           <span className="discount-lable">{item.discount}% OFF</span>
+                //        </div>
+                //       }
+                //       <div className="image-details">
+                //         <Button variant="primary" onClick={() => setFormData({
+                //         catagory : item.catagory,
+                //         description : item.description,
+                //         id : item.id,
+                //         img : item.img,
+                //         price : item.price,
+                //         title : item.title,
+                //         discount : item.discount,
+                //         discountPrice : item.discountPrice
+                //       }, handleOpen())}>Preview Image</Button>
+                //         <Button variant="secondary" onClick={() => (editImage(item),handleClose())}>Edit Image</Button>
+                //         <Button variant="danger" onClick={() => setRemovedImageId(item.id,RemoveModelOpen())}>REMOVE</Button>
+                //       </div>
+                //     </div>
+                //     </div>
+                //   </>
+                // ))
+                
                 
                   itemData.map(item => (
                       <div onClick={() => setFormData({
